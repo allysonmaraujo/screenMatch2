@@ -1,4 +1,6 @@
 import br.com.alura.screenmatch.calculos.CalculadoraDeTempo;
+import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
+import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 
@@ -19,14 +21,14 @@ public class Principal {
         System.out.println("A soma das avaliações é: " + meuFilme.getSomaDasAvaliacoes());
         System.out.println("O numero total de avaliações é : " + meuFilme.getTotalDeAvaliacoes());
 
-        Serie serie = new Serie();
-        serie.setNome("Lost");
-        serie.setAnoDeLancamento(2000);
-        serie.exibeFichaTecnica();
-        serie.setTemporadas(10);
-        serie.setEspisodiosPorTemporada(12);
-        serie.setMinutosPorEspisodio(45);
-        System.out.println("Duração total para maratonar a série em minutos: " + serie.getDuracaoEmMinutos());
+        Serie lost = new Serie();
+        lost.setNome("Lost");
+        lost.setAnoDeLancamento(2000);
+        lost.exibeFichaTecnica();
+        lost.setTemporadas(10);
+        lost.setEspisodiosPorTemporada(12);
+        lost.setMinutosPorEspisodio(45);
+        System.out.println("Duração total para maratonar a série em minutos: " + lost.getDuracaoEmMinutos());
 
 
         Filme outroFilme = new Filme();
@@ -38,8 +40,16 @@ public class Principal {
 
         calculadora.inclui(meuFilme);
         calculadora.inclui(outroFilme);
-        calculadora.inclui(serie);
+        calculadora.inclui(lost);
         System.out.println(calculadora.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(lost);
+        episodio.setTotalVisualizacoes(300);
+        filtro.filtra(episodio);
 
     }
 }
